@@ -38,12 +38,6 @@ public class LoopUnroll
     @Before
     public void setup()
     {
-        ints = new int[size];
-        
-        for (int i = 0; i < size; i++)
-        {
-            ints[i] = r.nextInt(10) + 1;
-        }
     }
     
     /**
@@ -62,12 +56,12 @@ public class LoopUnroll
         int s1 = 1;
         final int step = next(1);
         
-        for (int i = 0; i < ints.length; i = i + 1)
+        for (int i = 0; i < size; i = i + 1)
         {
             s1 += i;
         }
         
-        return s1 + step;
+        return s1;
     }
     
     @Benchmark
@@ -76,12 +70,12 @@ public class LoopUnroll
         int s1 = 1;
         final int step = next(1);
         
-        for (int i = 0; i < ints.length; i = i + step)
+        for (int i = 0; i < size; i = i + step)
         {
             s1 += i;
         }
         
-        return s1  + step;
+        return s1;
     }
     
     @Benchmark
@@ -90,7 +84,7 @@ public class LoopUnroll
         int s1 = 1;
         final int step = next(1);
         
-        for (int i = 0; i < ints.length; i = i + 20)
+        for (int i = 0; i < size; i = i + 10)
         {
             s1 += i;
             s1 += i + 1;
@@ -104,7 +98,7 @@ public class LoopUnroll
             s1 += i + 9;
         }
         
-        return s1  + step;
+        return s1;
     }
     
     @Test

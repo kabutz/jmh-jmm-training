@@ -44,3 +44,7 @@ forEach
 
 TreeMap vs. sorted Array
 
+JOL
+===
+java -Djdk.attach.allowAttachSelf -cp /home/rschwietzke/.m2/repository/org/openjdk/jol/jol-core/0.10/jol-core-0.10.jar '/home/rschwietzke/projects/GIT/jmh-jmm-training/src/main/java/org/jol/JOL_String.java' 
+

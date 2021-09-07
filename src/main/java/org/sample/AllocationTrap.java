@@ -2,13 +2,12 @@ package org.sample;
 
 public class AllocationTrap
 {
-    private final static int OUTER = 1250;
-    private final static int SIZE = 1000;
+    private final static int OUTER = 1000;
     private static Object o = null;
+    private final static long[] timers = new long[OUTER];
     
     public static void main(String[] args)
     {
-        final long [] timers = new long[OUTER];
         Object trap = null;
         Object o = null;
         
@@ -16,7 +15,7 @@ public class AllocationTrap
         {
             final Timer t = Timer.startTimer();
             
-            for (int j = 0; j < SIZE; j++)
+            for (int j = 0; j < 1000; j++)
             {
                 // burn time and train that null is normal
                 o = new Object();
@@ -27,9 +26,10 @@ public class AllocationTrap
                     trap = null;
                 }
             }
-                
-            // Important: 350 and 400 creates different results... fun...!
-            if (i == 500)
+            
+            // Give me a Non-Null, Vasily. 
+            // One Non-Null only, please.  
+            if (i == 400)
             {
                 trap = new Object();
             }

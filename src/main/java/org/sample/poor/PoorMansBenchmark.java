@@ -25,7 +25,7 @@ public class PoorMansBenchmark
     public static void main (String[] args)
     {
         int WARM = 100_000;
-        int SIZE = 1000_000;
+        int SIZE = 100_000_0;
         final long[] result = new long[Math.max(WARM, SIZE)];
         
         // compile our utilities first

@@ -1,20 +1,19 @@
 package org.jol;
 
-import java.util.BitSet;
-
 import org.openjdk.jol.info.ClassLayout;
 import org.openjdk.jol.info.GraphLayout;
 import org.openjdk.jol.vm.VM;
 
 public class JOL_String
 {
-    static Object o = new B();
+    static Object o = new A();
+    
     public static void main(String[] args) throws Exception 
     {
         System.out.println(VM.current().details());
         
         System.out.println("==== Class ===============================");
-        System.out.println(ClassLayout.parseClass(new A().getClass()).toPrintable());
+        System.out.println(ClassLayout.parseClass(o.getClass()).toPrintable());
 
         
         System.out.println("=== Instance Layout ====================================");
@@ -26,9 +25,9 @@ public class JOL_String
 }
 class A 
 {
-    boolean b;
-    int i;
-    int j;
+    String s;
+    boolean b1;
+    int a2;
 }
 class B extends A
 {
