@@ -36,38 +36,14 @@ public class ArraysAndHardware
     }
 
     @Benchmark
-    public int step32()
+    public int step20()
     {
         int sum = 0;
-        for (int i = 0; i < SIZE; i = i + 32)
+        for (int i = 0; i < SIZE; i = i + 20)
         {
             sum += src[i];
         }
 
         return sum;
     }
-    
-    @Benchmark
-    public int step16()
-    {
-        int sum = 0;
-        for (int i = 0; i < SIZE; i = i + 16)
-        {
-            sum += src[i];
-        }
-
-        return sum;
-    }
-    
-    @Benchmark
-    public int step1Reverse()
-    {
-        int sum = 0;
-        for (int i = SIZE - 1;  i >= 0; i--)
-        {
-            sum += src[i];
-        }
-
-        return sum;
-    }
-}
+ }

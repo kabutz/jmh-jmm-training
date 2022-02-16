@@ -2,7 +2,8 @@ package org.sample;
 
 public class AllocationTrap
 {
-    private final static int OUTER = 1000;
+    private final static int OUTER = 4000;
+    private final static int TRAP = 2000;
     private static Object o = null;
     private final static long[] timers = new long[OUTER];
     
@@ -22,14 +23,14 @@ public class AllocationTrap
                 
                 if (trap != null)
                 {
-                    System.out.println("Got you." + o);
+                    System.out.println("Got you.");
                     trap = null;
                 }
             }
             
             // Give me a Non-Null, Vasily. 
             // One Non-Null only, please.  
-            if (i == 400)
+            if (i == TRAP)
             {
                 trap = new Object();
             }
@@ -37,10 +38,12 @@ public class AllocationTrap
             timers[i] = t.stop().runtimeNanos();
         }        
 
-        for (int i = 0; i < OUTER; i++ )
+        for (int i = 0; i < OUTER; i = i + 1 )
         {
-            System.out.printf("%4d, %4d\n", i, timers[i]);
+            System.out.printf("%4d\t%4d\n", i, timers[i]);
         }
+        
+        System.out.println(o);
         
     }
 

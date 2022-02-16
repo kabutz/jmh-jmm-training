@@ -50,7 +50,7 @@ public class Strings1
     @Benchmark
     public String builderSized()
     {    
-        return new StringBuilder(32).append("a").append(foo).toString();
+        return new StringBuilder(70).append("a").append(foo).toString();
     }
     
     @Benchmark
@@ -65,7 +65,7 @@ public class Strings1
     @Benchmark
     public String builderNonFluidSized()
     {    
-        final StringBuilder sb = new StringBuilder(32);
+        final StringBuilder sb = new StringBuilder(70);
         sb.append("a");
         sb.append(foo);
         return sb.toString();

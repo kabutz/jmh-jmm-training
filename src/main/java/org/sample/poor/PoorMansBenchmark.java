@@ -22,11 +22,26 @@ public class PoorMansBenchmark
 		return new String(ch);
 	}
 
+	private static int loop(int size, int[] result)
+	{
+		int sum = 0;
+		for (int i = 0; i < size; i++)
+		{
+			Timer t = Timer.startTimer();       
+
+			sum += append(i).length();
+
+			result[i] = t.stop().runtimeNanos();
+		}
+		
+		return sum;
+	}
+	
 	public static void main (String[] args)
 	{
 		int SIZE = Integer.valueOf(args[0]);
 		int WARM = 10_000;
-		final long[] result = new long[Math.max(WARM, SIZE)];
+		final int[] result = new int[Math.max(WARM, SIZE)];
 
 		// compile our utilities first
 		for (int i = 0; i < WARM; i++)
@@ -35,18 +50,10 @@ public class PoorMansBenchmark
 			result[i] = t1.stop().runtimeNanos();
 		}
 
-		int sum = 0;
-		for (int i = 0; i < SIZE; i++)
-		{
-			Timer t = Timer.startTimer();       
-
-			sum += append(i).length();
-
-			result[i] = t.stop().runtimeNanos();
-		}  
+		int sum = loop(SIZE, result);
 
 		int a = String.valueOf(SIZE).length() + 1;
-		int m = String.valueOf(Arrays.stream(result).max().getAsLong()).length() + 2;
+		int m = String.valueOf(Arrays.stream(result).max().getAsInt()).length() + 2;
 
 		if (args.length == 1)
 		{

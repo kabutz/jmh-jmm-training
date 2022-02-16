@@ -23,7 +23,7 @@ import org.openjdk.jmh.annotations.Warmup;
 @Fork(1)
 public class Matrix
 {
-    @Param({"1000"})
+    @Param({"1","10","20","100","1000","5000","10000"})
     int SIZE;
     int[][] src;
 

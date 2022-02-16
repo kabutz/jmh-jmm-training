@@ -30,9 +30,9 @@ public class Timer
         return this;
     }
     
-    public long runtimeNanos()
+    public int runtimeNanos()
     {
-        return stoppedNs - ns;
+        return (int) (stoppedNs - ns);
     }
 
     public long stoppedNanos()

@@ -18,8 +18,8 @@ import org.sample.Timer;
 @State(Scope.Thread)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@Warmup(iterations = 0, time = 1, timeUnit = TimeUnit.SECONDS)
-@Measurement(iterations = 20, time = 10, timeUnit = TimeUnit.MILLISECONDS)
+@Warmup(iterations = 3, time = 1, timeUnit = TimeUnit.SECONDS)
+@Measurement(time = 1000, timeUnit = TimeUnit.MILLISECONDS)
 @Fork(1)
 public class PoorMansBenchmarkAsJMH
 {
@@ -42,9 +42,7 @@ public class PoorMansBenchmarkAsJMH
     @Benchmark
     public int plain()
     {                        
-        final Timer t1 = Timer.startTimer();         
         int x = append().length(); 
-        t1.stop().runtimeNanos();
         
         return x;
     }

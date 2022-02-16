@@ -82,9 +82,9 @@ public class LoopUnroll
     public int manualUnroll()
     {
         int s1 = 1;
-        final int step = next(1);
+        final int step = next(1) + 9;
         
-        for (int i = 0; i < size; i = i + 10)
+        for (int i = 0; i < size; i = i + step)
         {
             s1 += i;
             s1 += i + 1;

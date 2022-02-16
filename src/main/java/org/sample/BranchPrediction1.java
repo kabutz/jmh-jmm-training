@@ -51,37 +51,39 @@ public class BranchPrediction1
         }
     }
 
-    public void doIt(int[] array, Blackhole bh1, Blackhole bh2)
+    public int doIt(int[] array)
     {
+    	int sum = 0;
         for (int v : array)
         {
-            if (v <= 0)
+            if (v > 0)
             {
-                bh1.consume(v);
+                sum = sum + 2;
             }
             else
             {
-                bh2.consume(v);
+                sum = sum + 1;
             }
         }
+        return sum;
     }
     
     
     @Benchmark
-    public void sorted(Blackhole bh1, Blackhole bh2)
+    public int sorted()
     {
-        doIt(sorted, bh1, bh2);
+    	return doIt(sorted);
     }
 
     @Benchmark
-    public void unsorted(Blackhole bh1, Blackhole bh2)
+    public int unsorted()
     {
-        doIt(unsorted, bh1, bh2);
+    	return doIt(unsorted);
     }
 
     @Benchmark
-    public void reversed(Blackhole bh1, Blackhole bh2)
+    public int reversed()
     {
-        doIt(reversed, bh1, bh2);
+        return doIt(reversed);
     }
 }
