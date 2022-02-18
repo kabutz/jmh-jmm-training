@@ -16,8 +16,8 @@ import org.openjdk.jmh.annotations.Warmup;
 @State(Scope.Thread)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@Warmup(iterations = 30, time = 1, timeUnit = TimeUnit.SECONDS)
-@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.SECONDS)
+@Warmup(iterations = 30, time = 2, timeUnit = TimeUnit.SECONDS)
+@Measurement(iterations = 10, time = 2, timeUnit = TimeUnit.SECONDS)
 @Fork(3)
 public class Strings1 {
     private static final String PREFIX = "a";
