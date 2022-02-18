@@ -1,4 +1,4 @@
-clear; mvn clean install; java -Xms2g -Xmx2g -XX:+AlwaysPreTouch -jar target/benchmarks.jar StackVsHeap -prof gc
+clear; mvn clean verify; java -Xms2g -Xmx2g -XX:+AlwaysPreTouch -jar target/benchmarks.jar StackVsHeap -prof gc
 
 # -XX:+PrintGCDetails
 # -XX:+PrintGCDateStamps
