@@ -16,57 +16,53 @@ import org.openjdk.jmh.annotations.Warmup;
 @State(Scope.Thread)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@Warmup(iterations = 2, time = 2, timeUnit = TimeUnit.SECONDS)
-@Measurement(iterations = 2, time = 2000, timeUnit = TimeUnit.MILLISECONDS)
-@Fork(1)
-public class Strings1
-{
+@Warmup(iterations = 30, time = 1, timeUnit = TimeUnit.SECONDS)
+@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.SECONDS)
+@Fork(3)
+public class Strings1 {
+    private static final String PREFIX = "a";
     private String foo = null;
-    
+    private int LENGTH;
+
     @Setup
-    public void setup()
-    {
+    public void setup() {
+        //                        13 chars                  18 chars
         foo = String.valueOf(System.currentTimeMillis()) + "ashdfhgas dfhsa df";
-    }
-    
-    @Benchmark
-    public String plain()
-    {    
-        return "a" + foo;
+        LENGTH = plain().length();
     }
 
     @Benchmark
-    public String concat()
-    {    
-        return "a".concat(foo);
+    public String plain() {
+        return PREFIX + foo;
     }
 
     @Benchmark
-    public String builder()
-    {    
-        return new StringBuilder().append("a").append(foo).toString();
+    public String concat() {
+        return PREFIX.concat(foo);
     }
 
     @Benchmark
-    public String builderSized()
-    {    
-        return new StringBuilder(70).append("a").append(foo).toString();
+    public String builder() {
+        return new StringBuilder().append(PREFIX).append(foo).toString();
     }
-    
+
     @Benchmark
-    public String builderNonFluid()
-    {    
-         final StringBuilder sb = new StringBuilder();
-         sb.append("a");
-         sb.append(foo);
-         return sb.toString();
+    public String builderSized() {
+        return new StringBuilder(LENGTH).append(PREFIX).append(foo).toString();
     }
-    
+
     @Benchmark
-    public String builderNonFluidSized()
-    {    
-        final StringBuilder sb = new StringBuilder(70);
-        sb.append("a");
+    public String builderNonFluid() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append(PREFIX);
+        sb.append(foo);
+        return sb.toString();
+    }
+
+    @Benchmark
+    public String builderNonFluidSized() {
+        final StringBuilder sb = new StringBuilder(LENGTH);
+        sb.append(PREFIX);
         sb.append(foo);
         return sb.toString();
     }
